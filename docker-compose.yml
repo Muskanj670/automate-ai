@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: automate-ai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: automate_user
+      POSTGRES_PASSWORD: automate_password
+      POSTGRES_DB: automate_ai
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
