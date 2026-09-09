@@ -1,5 +1,5 @@
 from sqlalchemy import String, Text, Integer
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 
@@ -59,3 +59,9 @@ class CandidateProfile(Base):
         Integer,
         nullable=True
     )
+
+    skills = relationship(
+    "Skill",
+    back_populates="profile",
+    cascade="all, delete-orphan"
+)

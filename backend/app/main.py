@@ -4,7 +4,9 @@ from sqlalchemy import text
 from app.db.database import engine
 
 from app.modules.job_tracker.api.routes.profile import router as profile_router
-
+from app.modules.job_tracker.api.routes.skills import (
+    router as skills_router
+)
 
 app = FastAPI(
     title="AutoMate AI",
@@ -13,6 +15,7 @@ app = FastAPI(
 )
 
 app.include_router(profile_router)
+app.include_router(skills_router)
 
 @app.get("/")
 def root():
