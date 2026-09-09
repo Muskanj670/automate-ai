@@ -9,6 +9,7 @@ from app.core.config import settings
 from app.db.base import Base
 from app.modules.job_tracker.models.profile import CandidateProfile
 from app.modules.job_tracker.models.skill import Skill
+from app.modules.job_tracker.models.job import Job
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
