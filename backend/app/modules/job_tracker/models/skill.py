@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, ForeignKey
+from sqlalchemy import String, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -13,14 +13,11 @@ class Skill(Base):
         index=True
     )
 
-    profile_id: Mapped[int] = mapped_column(
-        ForeignKey("candidate_profiles.id"),
-        nullable=False
-    )
-
     name: Mapped[str] = mapped_column(
         String(100),
-        nullable=False
+        nullable=False,
+        unique=True,
+        index=True
     )
 
     category: Mapped[str | None] = mapped_column(
@@ -28,12 +25,14 @@ class Skill(Base):
         nullable=True
     )
 
-    proficiency: Mapped[str | None] = mapped_column(
-        String(50),
-        nullable=True
+    candidate_skills = relationship(
+        "CandidateSkill",
+        back_populates="skill",
+        cascade="all, delete-orphan"
     )
 
-    profile = relationship(
-        "CandidateProfile",
-        back_populates="skills"
+    job_skills = relationship(
+        "JobSkill",
+        back_populates="skill",
+        cascade="all, delete-orphan"
     )

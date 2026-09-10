@@ -1,5 +1,5 @@
 from sqlalchemy import String, Text, Integer
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 
@@ -63,3 +63,9 @@ class Job(Base):
         String(100),
         nullable=True
     )
+
+    job_skills = relationship(
+    "JobSkill",
+    back_populates="job",
+    cascade="all, delete-orphan"
+)

@@ -60,8 +60,8 @@ class CandidateProfile(Base):
         nullable=True
     )
 
-    skills = relationship(
-    "Skill",
-    back_populates="profile",
-    cascade="all, delete-orphan"
-)
+    candidate_skills = relationship(
+        "CandidateSkill",
+        back_populates="profile",
+        cascade="all, delete-orphan"
+    )
